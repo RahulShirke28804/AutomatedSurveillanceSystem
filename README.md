@@ -405,10 +405,9 @@ Inside directory (example: Demo/):
 Each contains:  
 • System snapshot + Process list, as
 
-
 --------------------------------------------------------------------
---------Automated Platform Surveillance System------  
-Log created at : Tue Mar 18 12:04:34 2026  
+-------- Automated Platform Surveillance System ------  
+Log created at : Tue Mar 18 12:04:34 2026
 --------------------------------------------------------------------
 CPU usage : 23 %  
 
