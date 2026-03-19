@@ -157,8 +157,8 @@ if(Ret == False):
 
 
 ### Step C: If folder doesn’t exist, create it
-### else:
-os.mkdir(FolderName)
+### else:  
+os.mkdir(FolderName)  
 print("Directory for log files gets created succesfully")
 
 
@@ -169,7 +169,9 @@ FileName = os.path.join(FolderName,"Marvellous_%s.log" %timestamp)
 
 
 This gives files like:  
-    **• Marvellous_2026-02-07_21-10-04.log**  
+
+**• Marvellous_2026-02-07_21-10-04.log**  
+	
 So every run produces a unique log file (no overwrite).
 
 
@@ -198,14 +200,14 @@ fobj.write(Border+"\n\n")
 
 
 fobj.write("CPU Usage : %s %%\n" %psutil.cpu_percent())  
-     • psutil.cpu_percent() returns CPU utilization %  
-     • Note: first call may sometimes show 0 or inaccurate if not warmed; but okay for general monitoring.
+ • psutil.cpu_percent() returns CPU utilization %  
+ • Note: first call may sometimes show 0 or inaccurate if not warmed; but okay for general monitoring.
 
 ### RAM Usage
 
-mem = psutil.virtual_memory()
-fobj.write("RAM usage : %s %%\n" %mem.percent)
-     • virtual_memory() returns many fields, like total, used, free, percent.
+mem = psutil.virtual_memory()  
+fobj.write("RAM usage : %s %%\n" %mem.percent)  
+     • virtual_memory() returns many fields, like total, used, free, percent.  
      • You log mem.percent.
 
 
@@ -215,19 +217,18 @@ fobj.write("RAM usage : %s %%\n" %mem.percent)
 ## Disk Usage Report
 
 
-for part in psutil.disk_partitions():
-     try:
-         usage = psutil.disk_usage(part.mountpoint)
-         fobj.write("%s -> %s %% used\n" %(part.mountpoint,
-         usage.percent))
-     except:
+for part in psutil.disk_partitions():  
+     try:  
+         usage = psutil.disk_usage(part.mountpoint)  
+         fobj.write("%s -> %s %% used\n" %(part.mountpoint,usage.percent))  
+     except:  
              pass
 			 
- • psutil.disk_partitions() returns all drives/partitions.
- ◦ Windows example: C:\, D:\
- ◦ Linux example: /, /home, /boot
- • For each partition:
- ◦ disk_usage(mountpoint) gives used %, total, free.
+ • psutil.disk_partitions() returns all drives/partitions.  
+ ◦ Windows example: C:\, D:\  
+ ◦ Linux example: /, /home, /boot  
+ • For each partition:  
+ ◦ disk_usage(mountpoint) gives used %, total, free.  
 
 
 -----------------------------------------------------------------------------------------------------
@@ -236,28 +237,28 @@ for part in psutil.disk_partitions():
 ## Network Usage Report
 
 
-net = psutil.net_io_counters()
-fobj.write("Sent : %.2f MB\n" % (net.bytes_sent / (1024 * 1024)))
-fobj.write("Recv : %.2f MB\n" % (net.bytes_recv / (1024 * 1024)))
+net = psutil.net_io_counters()  
+fobj.write("Sent : %.2f MB\n" % (net.bytes_sent / (1024 * 1024)))  
+fobj.write("Recv : %.2f MB\n" % (net.bytes_recv / (1024 * 1024)))  
 
 
-• net_io_counters() returns total bytes sent/received since boot.
-• You convert bytes → MB by dividing by 1024*1024.
-• %.2f prints 2 decimal points.
+• net_io_counters() returns total bytes sent/received since boot.  
+• You convert bytes → MB by dividing by 1024*1024.  
+• %.2f prints 2 decimal points.  
 
 
 ## Process Logging section
 
-Data = ProcessScan()
-for info in Data:
-     fobj.write("PID : %s\n" %info.get("pid"))
-     fobj.write("Name %s\n" %info.get("name"))
+Data = ProcessScan()  
+for info in Data:  
+     fobj.write("PID : %s\n" %info.get("pid"))  
+     fobj.write("Name %s\n" %info.get("name"))  
      …
 
-Here:
-     • ProcessScan() returns a list of dictionaries
-     • Each dictionary contains process details
-     • You write each process info into log
+Here:  
+     • ProcessScan() returns a list of dictionaries  
+     • Each dictionary contains process details  
+     • You write each process info into log  
 
 
 -----------------------------------------------------------------------------------------------------
