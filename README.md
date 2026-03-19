@@ -392,7 +392,7 @@ Stop script using:
 -----------------------------------------------------------------------------------------------------
 
 
-Sample Log Output
+# Sample Log Output
 
 
 Inside directory (example: Demo/):
