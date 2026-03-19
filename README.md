@@ -96,35 +96,35 @@ import schedule
 
 ### **Psutil**
 Provides system and process information:  
-    • CPU, RAM, Disk, Network, Processes
+	 • CPU, RAM, Disk, Network, Processes
 
 
 ### **sys**
 
 Used for command line arguments  
-    • sys.argv
+     • sys.argv
 
 
 ### **Os**
 
 Used for file system operations:  
-    • check folder exists (os.path.exists)  
-    • create folder (os.mkdir)  
-    • join path (os.path.join)
+     • check folder exists (os.path.exists)  
+     • create folder (os.mkdir)  
+     • join path (os.path.join)
 
 
 ### **Time**
 
 Used for:  
-    • current time formatting (strftime)  
-    • sleeping (sleep)  
-    • printing readable current time (ctime)  
-    • converting epoch to readable date  
+     • current time formatting (strftime)  
+     • sleeping (sleep)  
+     • printing readable current time (ctime)  
+     • converting epoch to readable date  
 
 ### **Schedule**
 
 Used to run a function every N minutes  
-    • schedule.every(5).minutes.do(CreateLog, "Folder")
+     • schedule.every(5).minutes.do(CreateLog, "Folder")
 
 
 -----------------------------------------------------------------------------------------------------
@@ -138,22 +138,22 @@ This is the main logging function. It generates one complete log file.
 
 Border = "-"*50  
 Ret = os.path.exists(FolderName)  
-    • Border is just for formatting.  
-    • os.path.exists(FolderName) checks if the folder already exists.
+     • Border is just for formatting.  
+     • os.path.exists(FolderName) checks if the folder already exists.
 
 
 ### Step B: If exists, confirm it is a directory
 
 if(Ret == True):  
-    Ret = os.path.isdir(FolderName)  
+     Ret = os.path.isdir(FolderName)  
 if(Ret == False):  
-    print("Unable to create folder")  
-    return
+     print("Unable to create folder")  
+     return
 
-** Reason: **
-    • It’s possible a file exists with the same name as your folder.
-    • Example: If Marvellous is a file, you cannot create folder Marvellous.
-    • So it checks os.path.isdir().
+** Reason: **  
+     • It’s possible a file exists with the same name as your folder.  
+     • Example: If Marvellous is a file, you cannot create folder Marvellous.  
+     • So it checks os.path.isdir().
 
 
 ### Step C: If folder doesn’t exist, create it
@@ -200,16 +200,15 @@ fobj.write(Border+"\n\n")
 
 
 fobj.write("CPU Usage : %s %%\n" %psutil.cpu_percent())
-    • psutil.cpu_percent() returns CPU utilization %
-    • Note: first call may sometimes show 0 or inaccurate if not warmed; but okay for general monitoring.
+     • psutil.cpu_percent() returns CPU utilization %
+     • Note: first call may sometimes show 0 or inaccurate if not warmed; but okay for general monitoring.
 
 ### RAM Usage
 
 mem = psutil.virtual_memory()
 fobj.write("RAM usage : %s %%\n" %mem.percent)
-    
-    • virtual_memory() returns many fields, like total, used, free, percent.
-    • You log mem.percent.
+     • virtual_memory() returns many fields, like total, used, free, percent.
+     • You log mem.percent.
 
 
 -----------------------------------------------------------------------------------------------------
@@ -219,19 +218,18 @@ fobj.write("RAM usage : %s %%\n" %mem.percent)
 
 
 for part in psutil.disk_partitions():
-    try:
-        usage = psutil.disk_usage(part.mountpoint)
-        fobj.write("%s -> %s %% used\n" %(part.mountpoint,
-        usage.percent))
-    except:
-            pass
-
-    
-    • psutil.disk_partitions() returns all drives/partitions.
-    ◦ Windows example: C:\, D:\
-    ◦ Linux example: /, /home, /boot
-    • For each partition:
-    ◦ disk_usage(mountpoint) gives used %, total, free.
+     try:
+         usage = psutil.disk_usage(part.mountpoint)
+         fobj.write("%s -> %s %% used\n" %(part.mountpoint,
+         usage.percent))
+     except:
+             pass
+			 
+ • psutil.disk_partitions() returns all drives/partitions.
+ ◦ Windows example: C:\, D:\
+ ◦ Linux example: /, /home, /boot
+ • For each partition:
+ ◦ disk_usage(mountpoint) gives used %, total, free.
 
 
 -----------------------------------------------------------------------------------------------------
@@ -244,23 +242,24 @@ net = psutil.net_io_counters()
 fobj.write("Sent : %.2f MB\n" % (net.bytes_sent / (1024 * 1024)))
 fobj.write("Recv : %.2f MB\n" % (net.bytes_recv / (1024 * 1024)))
 
-    • net_io_counters() returns total bytes sent/received since boot.
-    • You convert bytes → MB by dividing by 1024*1024.
-    • %.2f prints 2 decimal points.
+
+• net_io_counters() returns total bytes sent/received since boot.
+• You convert bytes → MB by dividing by 1024*1024.
+• %.2f prints 2 decimal points.
 
 
 ## Process Logging section
 
 Data = ProcessScan()
 for info in Data:
-    fobj.write("PID : %s\n" %info.get("pid"))
-    fobj.write("Name %s\n" %info.get("name"))
-    …
+     fobj.write("PID : %s\n" %info.get("pid"))
+     fobj.write("Name %s\n" %info.get("name"))
+     …
 
 Here:
-    • ProcessScan() returns a list of dictionaries
-    • Each dictionary contains process details
-    • You write each process info into log
+     • ProcessScan() returns a list of dictionaries
+     • Each dictionary contains process details
+     • You write each process info into log
 
 
 -----------------------------------------------------------------------------------------------------
@@ -274,10 +273,10 @@ This collects per-process details.
 ### Step A: Warm-up CPU percent
 
 for proc in psutil.process_iter():
-    try:
-        proc.cpu_percent()
-    except:
-        pass
+     try:
+         proc.cpu_percent()
+     except:
+         pass
 time.sleep(0.2)
 
 
@@ -289,8 +288,8 @@ time.sleep(0.2)
 ### Step B: Scan processes again and collect info
 
 for proc in psutil.process_iter():
-    try:
-        info = proc.as_dict(attrs=["pid", "name",
+     try:
+         info = proc.as_dict(attrs=["pid", "name",
 
 "username","status","create_time"])
 
@@ -313,15 +312,15 @@ If conversion fails, set "NA".
 
 info["cpu_percent"] = proc.cpu_percent(None)
 info["memory_percent"] = proc.memory_percent()
-	• cpu_percent(None) uses the internal last measurement.
-	• memory_percent() returns percentage of RAM used by process.
+	 • cpu_percent(None) uses the internal last measurement.
+	 • memory_percent() returns percentage of RAM used by process.
 
 
 ### Step E: Handle common process exceptions
 
 except (psutil.NoSuchProcess, psutil.AccessDenied,
 psutil.ZombieProcess):
-	pass
+	 pass
 
 
 ### These happen because:
