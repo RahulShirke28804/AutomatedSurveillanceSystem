@@ -64,6 +64,7 @@
 Example:
 
 python Demo.py 5 Logs
+
     * Runs every 5 minutes    
     * Stores logs in the Logs/ directory
 
