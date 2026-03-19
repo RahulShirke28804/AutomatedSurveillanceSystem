@@ -2,62 +2,62 @@
 ﻿This script is a periodic system monitoring + logging automation tool.
  
 # Features
-    
-    * 📊** CPU Monitoring –** Tracks real-time CPU usage
-    
-    * 🧠 **Memory Analysis –** Logs RAM utilization percentage
-    
-    * 💾** Disk Usage Report –** Displays usage of all mounted partitions
-    
-    * 🌐 **Network Monitoring – **Tracks sent and received data (in MB)
-    
-    * ⚙️ **Process Tracking – **Captures:
-    
-        * Process ID (PID)
-        
-        * Process Name
-        
-        * User
-        
-        * Status
-        
-        * Start Time
-        
-        * CPU & Memory consumption
-    
-    * ⏱️ **Automated Scheduling –** Runs at user-defined time intervals
 
-    * 📁 **Dynamic Log Generation –** Creates timestamp-based log files
+* 📊**CPU Monitoring –** Tracks real-time CPU usage
+
+* 🧠 **Memory Analysis –** Logs RAM utilization percentage
+
+* 💾** Disk Usage Report –** Displays usage of all mounted partitions
+
+* 🌐 **Network Monitoring – **Tracks sent and received data (in MB)
+
+* ⚙️ **Process Tracking – **Captures:
+
+	* Process ID (PID)
+	
+	* Process Name
+	
+	* User
+	
+	* Status
+	
+	* Start Time
+	
+	* CPU & Memory consumption
+
+* ⏱️ **Automated Scheduling –** Runs at user-defined time intervals
+
+* 📁 **Dynamic Log Generation –** Creates timestamp-based log files
 
 -----------------------------------------------------------------------------------------------------
 
 # Tech Stack
-     ## * Python 3
-    
-     * Libraries used:
-    
-        * **psutil **– System and process monitoring
-        
-        * **schedule –** Task scheduling
-        
-        * **os, sys, time –** System operations
-            
+ ## * Python 3
+
+ * Libraries used:
+
+	* **psutil **– System and process monitoring
+	
+	* **schedule –** Task scheduling
+	
+	* **os, sys, time –** System operations
+		
 -----------------------------------------------------------------------------------------------------
 
 # How It Works
-    1. The script collects system metrics using psutil
-    
-    2. It scans all active processes and gathers detailed information
-    
-    3. Logs are generated in a specified directory with timestamps
-    
-    4. Using the schedule module, the script runs periodically based on user input
+1. The script collects system metrics using psutil
+
+2. It scans all active processes and gathers detailed information
+
+3. Logs are generated in a specified directory with timestamps
+
+4. Using the schedule module, the script runs periodically based on user input
 
 
 -----------------------------------------------------------------------------------------------------
 
 
-Usage
+# Usage
 
 **python ScriptName.py <TimeInterval_in_minutes> <DirectoryName>**
 
@@ -71,7 +71,7 @@ python Demo.py 5 Logs
 -----------------------------------------------------------------------------------------------------
 
 
-Command Line Options
+# Command Line Options
 Option
 	Description
 	--h
