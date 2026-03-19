@@ -164,12 +164,12 @@ print("Directory for log files gets created succesfully")
 
 ### Step D: Create a timestamp-based log filename
 
-timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")   
 FileName = os.path.join(FolderName,"Marvellous_%s.log" %timestamp)
 
 
-This gives files like:
-    **• Marvellous_2026-02-07_21-10-04.log**
+This gives files like:  
+    **• Marvellous_2026-02-07_21-10-04.log**  
 So every run produces a unique log file (no overwrite).
 
 
@@ -182,9 +182,9 @@ This creates a new file and writes fresh content.
 
 ### Step F: Write Header
 
-fobj.write(Border+"\n")
-fobj.write("---- Marvellous Platform Surveillance System -----\n")
-fobj.write("Log created at : "+time.ctime()+"\n")
+fobj.write(Border+"\n")  
+fobj.write("---- Marvellous Platform Surveillance System -----\n")  
+fobj.write("Log created at : "+time.ctime()+"\n")  
 fobj.write(Border+"\n\n")
     
 • time.ctime() gives human readable date/time.
@@ -193,12 +193,12 @@ fobj.write(Border+"\n\n")
 -----------------------------------------------------------------------------------------------------
 
 
-## System Report section
+## System Report section  
 ### CPU Usage
 
 
-fobj.write("CPU Usage : %s %%\n" %psutil.cpu_percent())
-     • psutil.cpu_percent() returns CPU utilization %
+fobj.write("CPU Usage : %s %%\n" %psutil.cpu_percent())  
+     • psutil.cpu_percent() returns CPU utilization %  
      • Note: first call may sometimes show 0 or inaccurate if not warmed; but okay for general monitoring.
 
 ### RAM Usage
@@ -291,7 +291,7 @@ for proc in psutil.process_iter():
 
 "username","status","create_time"])
 
-• process_iter() gives access to each running process.
+• process_iter() gives access to each running process.  
 • as_dict(attrs=[...]) collects selected fields only (fast + clean).
 
 
@@ -308,9 +308,9 @@ If conversion fails, set "NA".
 
 ### Step D: Get CPU% and Memory%
 
-info["cpu_percent"] = proc.cpu_percent(None)
-info["memory_percent"] = proc.memory_percent()
-	 • cpu_percent(None) uses the internal last measurement.
+info["cpu_percent"] = proc.cpu_percent(None)  
+info["memory_percent"] = proc.memory_percent()  
+	 • cpu_percent(None) uses the internal last measurement.  
 	 • memory_percent() returns percentage of RAM used by process.
 
 
@@ -344,52 +344,52 @@ print("---- Marvellous Platform Surveillance System -----")
 Command Line Arguments behavior
 
 
-Case 1: --h help
-python Demo.py --h
+### Case 1: --h help
+python Demo.py --h  
 Shows what this script is used for.
 
 
-Case 2: --u usage
-python Demo.py --u
-Shows how to run:
+### Case 2: --u usage
+python Demo.py --u  
+Shows how to run:  
 • ScriptName.py TimeInterval DirectoryName
 
 
-Case 3: Actual automation run
+### Case 3: Actual automation run 
 python Demo.py 5 Marvellous
 
 
-Means:
-• Create log every 5 minutes
+Means:  
+• Create log every 5 minutes  
 • Store logs in folder Marvellous
 
 
 -----------------------------------------------------------------------------------------------------
 
 
-Scheduling logic
+**Scheduling logic**
 
 
 schedule.every(int(sys.argv[1])).minutes.do(CreateLog, sys.argv[2])
 
 
-This registers the job:
+This registers the job:  
 • every N minutes → call CreateLog(DirectoryName)
 
 
 Then the infinite loop keeps checking:
 
 
-while True:
-schedule.run_pending()
+while True:  
+schedule.run_pending()  
 time.sleep(1)
 
 
-• run_pending() runs jobs whose time has come.
+• run_pending() runs jobs whose time has come.  
 • sleep(1) saves CPU (otherwise loop will run extremely fast).
 
 
-Stop script using:
+Stop script using:  
 • Ctrl + C
 
 
@@ -411,8 +411,8 @@ Each contains:
 
 
 --------------------------------------------------------------------
---------Automated Platform Surveillance System------
-Log created at : Tue Mar 18 12:04:34 2026
+--------Automated Platform Surveillance System------  
+Log created at : Tue Mar 18 12:04:34 2026  
 --------------------------------------------------------------------
 CPU usage : 23 %  
 
