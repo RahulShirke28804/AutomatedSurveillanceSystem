@@ -3,15 +3,15 @@
  
 # Features
 
-* 📊**CPU Monitoring –** Tracks real-time CPU usage
+* 📊** CPU Monitoring – ** Tracks real-time CPU usage
 
-* 🧠 **Memory Analysis –** Logs RAM utilization percentage
+* 🧠 ** Memory Analysis – ** Logs RAM utilization percentage
 
-* 💾** Disk Usage Report –** Displays usage of all mounted partitions
+* 💾** Disk Usage Report – ** Displays usage of all mounted partitions
 
-* 🌐 **Network Monitoring – **Tracks sent and received data (in MB)
+* 🌐 ** Network Monitoring – **Tracks sent and received data (in MB)
 
-* ⚙️ **Process Tracking – **Captures:
+* ⚙️ ** Process Tracking – **Captures:
 
 	* Process ID (PID)
 	
@@ -25,9 +25,9 @@
 	
 	* CPU & Memory consumption
 
-* ⏱️ **Automated Scheduling –** Runs at user-defined time intervals
+* ⏱️ ** Automated Scheduling – ** Runs at user-defined time intervals
 
-* 📁 **Dynamic Log Generation –** Creates timestamp-based log files
+* 📁 ** Dynamic Log Generation – ** Creates timestamp-based log files
 
 -----------------------------------------------------------------------------------------------------
 
@@ -63,21 +63,21 @@
 
 Example:
 
-python Demo.py 5 Logs
-
-    * Runs every 5 minutes    
-    * Stores logs in the Logs/ directory
+	python AutomatedSurveillanceSystem.py 5 Logs
+	
+* Runs every 5 minutes    
+* Stores logs in the Logs/ directory
 
 
 -----------------------------------------------------------------------------------------------------
 
 
 # Command Line Options
-Option
-	Description
-	--h
-	Displays help information
-	--u
+Option 
+	Description  
+	--h  
+	Displays help information  
+	--u  
 	Shows usage instructions
     
 -----------------------------------------------------------------------------------------------------
@@ -87,43 +87,43 @@ Option
 
 ## **Modules used**
 
-import psutil
-import sys
-import os
-import time
-import schedule
+import psutil  
+import sys  
+import os  
+import time  
+import schedule  
 
 
 ### **Psutil**
-Provides system and process information:
+Provides system and process information:  
     • CPU, RAM, Disk, Network, Processes
 
 
 ### **sys**
 
-Used for command line arguments
+Used for command line arguments  
     • sys.argv
 
 
 ### **Os**
 
-Used for file system operations:
-    • check folder exists (os.path.exists)
-    • create folder (os.mkdir)
+Used for file system operations:  
+    • check folder exists (os.path.exists)  
+    • create folder (os.mkdir)  
     • join path (os.path.join)
 
 
 ### **Time**
 
-Used for:
-    • current time formatting (strftime)
-    • sleeping (sleep)
-    • printing readable current time (ctime)
-    • converting epoch to readable date
+Used for:  
+    • current time formatting (strftime)  
+    • sleeping (sleep)  
+    • printing readable current time (ctime)  
+    • converting epoch to readable date  
 
 ### **Schedule**
 
-Used to run a function every N minutes    
+Used to run a function every N minutes  
     • schedule.every(5).minutes.do(CreateLog, "Folder")
 
 
@@ -136,21 +136,21 @@ This is the main logging function. It generates one complete log file.
 
 ### Step A: Prepare border and check folder
 
-Border = "-"*50
-Ret = os.path.exists(FolderName)
-    • Border is just for formatting.
+Border = "-"*50  
+Ret = os.path.exists(FolderName)  
+    • Border is just for formatting.  
     • os.path.exists(FolderName) checks if the folder already exists.
 
 
 ### Step B: If exists, confirm it is a directory
 
-if(Ret == True):
-    Ret = os.path.isdir(FolderName)
-if(Ret == False):
-    print("Unable to create folder")
+if(Ret == True):  
+    Ret = os.path.isdir(FolderName)  
+if(Ret == False):  
+    print("Unable to create folder")  
     return
 
-**Reason: **
+** Reason: **
     • It’s possible a file exists with the same name as your folder.
     • Example: If Marvellous is a file, you cannot create folder Marvellous.
     • So it checks os.path.isdir().
@@ -313,21 +313,21 @@ If conversion fails, set "NA".
 
 info["cpu_percent"] = proc.cpu_percent(None)
 info["memory_percent"] = proc.memory_percent()
-• cpu_percent(None) uses the internal last measurement.
-• memory_percent() returns percentage of RAM used by process.
+	• cpu_percent(None) uses the internal last measurement.
+	• memory_percent() returns percentage of RAM used by process.
 
 
 ### Step E: Handle common process exceptions
 
 except (psutil.NoSuchProcess, psutil.AccessDenied,
 psutil.ZombieProcess):
-pass
+	pass
 
 
 ### These happen because:
-    • Process may terminate while scanning
-    • Some processes need admin access
-    • Zombie processes exist on Linux
+• Process may terminate while scanning
+• Some processes need admin access
+• Zombie processes exist on Linux
 
 -----------------------------------------------------------------------------------------------------
 
