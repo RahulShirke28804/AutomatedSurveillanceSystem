@@ -270,26 +270,24 @@ This collects per-process details.
 
 ### Step A: Warm-up CPU percent
 
-for proc in psutil.process_iter():
-     try:
-         proc.cpu_percent()
-     except:
-         pass
+for proc in psutil.process_iter():  
+     try:  
+         proc.cpu_percent()  
+     except:  
+         pass  
 time.sleep(0.2)
 
 
-• proc.cpu_percent() needs two measurements to calculate usage.
-• First call “starts the measurement”
-• After a short delay (sleep(0.2)), second call gives actual CPU %.
+• proc.cpu_percent() needs two measurements to calculate usage.  
+• First call “starts the measurement”  
+• After a short delay (sleep(0.2)), second call gives actual CPU %.  
 
 
 ### Step B: Scan processes again and collect info
 
-for proc in psutil.process_iter():
-     try:
-         info = proc.as_dict(attrs=["pid", "name",
-
-"username","status","create_time"])
+for proc in psutil.process_iter():  
+     try:  
+         info = proc.as_dict(attrs=["pid", "name","username","status","create_time"])
 
 • process_iter() gives access to each running process.  
 • as_dict(attrs=[...]) collects selected fields only (fast + clean).
@@ -297,10 +295,9 @@ for proc in psutil.process_iter():
 
 ### Step C: Convert create_time to readable string
 
-info["create_time"] = time.strftime("%Y-%m-%d %H:%M:%S",
-time.localtime(info["create_time"]))
+info["create_time"] = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(info["create_time"]))
 
-• create_time is stored as epoch timestamp (seconds since 1970).
+• create_time is stored as epoch timestamp (seconds since 1970).  
 • You convert it into readable date-time format.
 
 If conversion fails, set "NA".
@@ -316,14 +313,14 @@ info["memory_percent"] = proc.memory_percent()
 
 ### Step E: Handle common process exceptions
 
-except (psutil.NoSuchProcess, psutil.AccessDenied,
-psutil.ZombieProcess):
+except (psutil.NoSuchProcess, psutil.AccessDenied,  
+psutil.ZombieProcess):  
 	 pass
 
 
-### These happen because:
-• Process may terminate while scanning
-• Some processes need admin access
+### These happen because:  
+• Process may terminate while scanning  
+• Some processes need admin access  
 • Zombie processes exist on Linux
 
 
@@ -335,14 +332,12 @@ Function: main()
 This handles CLI options and starts scheduling.
 
 
-Script banner
-
+### Script banner
 
 print("---- Marvellous Platform Surveillance System -----")
 
 
 Command Line Arguments behavior
-
 
 ### Case 1: --h help
 python Demo.py --h  
@@ -433,7 +428,7 @@ Recv : 98.32 MB
 
 
 Use Cases  
-	* System performance monitoring
-	* Debugging performance issues
-	* Learning system-level programming
+	* System performance monitoring  
+	* Debugging performance issues  
+	* Learning system-level programming  
 	* Lightweight alternative to monitoring tools
