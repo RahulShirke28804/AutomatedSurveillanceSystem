@@ -193,8 +193,6 @@ fobj.write(Border+"\n\n")
 -----------------------------------------------------------------------------------------------------
 
 
-
-
 ## System Report section
 ### CPU Usage
 
@@ -328,80 +326,8 @@ psutil.ZombieProcess):
 • Some processes need admin access
 • Zombie processes exist on Linux
 
+
 -----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Function: main()
@@ -438,6 +364,7 @@ Means:
 • Store logs in folder Marvellous
 
 
+-----------------------------------------------------------------------------------------------------
 
 
 Scheduling logic
@@ -466,17 +393,20 @@ Stop script using:
 • Ctrl + C
 
 
+-----------------------------------------------------------------------------------------------------
+
+
 Sample Log Output
 
 
 Inside directory (example: Demo/):
-• Marvellous_2026-02-07_21-00-00.log
-• Marvellous_2026-02-07_21-05-00.log
-• Marvellous_2026-02-07_21-10-00.log
+• Marvellous_2026-02-07_21-00-00.log  
+• Marvellous_2026-02-07_21-05-00.log  
+• Marvellous_2026-02-07_21-10-00.log  
 ...and so on.
 
 
-Each contains:
+Each contains:  
 • System snapshot + Process list, as
 
 
@@ -484,25 +414,26 @@ Each contains:
 --------Automated Platform Surveillance System------
 Log created at : Tue Mar 18 12:04:34 2026
 --------------------------------------------------------------------
-CPU usage : 23 %
+CPU usage : 23 %  
+
 RAM usage : 45 %
 
 
 Disk usage report
+
 / -> 60% used
 
 
-Network usage Report
-Sent : 120.45 MB
-Recv : 98.32 MB
-________________
+Network usage Report  
+Sent : 120.45 MB  
+Recv : 98.32 MB  
 
 
-Use Cases
-                     * System performance monitoring
+-----------------------------------------------------------------------------------------------------
 
-                     * Debugging performance issues
 
-                     * Learning system-level programming
-
-                     * Lightweight alternative to monitoring tools
+Use Cases  
+	* System performance monitoring
+	* Debugging performance issues
+	* Learning system-level programming
+	* Lightweight alternative to monitoring tools
